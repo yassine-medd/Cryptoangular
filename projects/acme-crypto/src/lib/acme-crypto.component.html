@@ -1,0 +1,38 @@
+<div>
+  
+
+  <form #myForm="ngForm"  novalidate>
+   
+    <div class="custom-control custom-radio">
+      <input id="ROT13" type="radio" class="custom-control-input" [(ngModel)]="typeCrypto" value="ROT13" ng-model="TypeCrypto" name="TypeCrypto" ngModel>
+      <label class="custom-control-label" for="ROT13">ROT13</label>
+   </div>
+
+   <div class="custom-control custom-radio">
+     <input id="Zmap" type="radio" class="custom-control-input" [(ngModel)]="typeCrypto" checked value="Zmap" ng-model="TypeCrypto" name="TypeCrypto" ngModel>
+     <label class="custom-control-label" for="Zmap">Zmap</label>
+  </div>
+
+    <div class="custom-control custom-radio">
+       <input id="XOR" type="radio" class="custom-control-input"  [(ngModel)]="typeCrypto"  value="XOR" ng-model="TypeCrypto" name="TypeCrypto" ngModel>
+       <label class="custom-control-label" for="XOR">XOR</label>
+    </div>
+ 
+ </form>
+ 
+  <div *ngIf="typeCrypto == 'XOR' ">
+    UTILISER LA CLÉ  <input placeholder="Enter key here..." (keyup)="OnKey($event)">
+  </div>
+   
+    <textarea id="userInput" (keyup)="OnValue($event)"   placeholder="Enter text here..."></textarea>
+    <textarea  disabled>{{valcrypto}}</textarea>
+    
+   
+    
+    
+     
+      <button type="button" (click)="Crypto()">Convert </button>
+      <button type="button" (click)="DeCrypto()">Decypto </button>
+      
+</div>
+    

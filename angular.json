@@ -100,6 +100,37 @@
           }
         }
       }
+    },
+    "acme-crypto": {
+      "projectType": "library",
+      "root": "projects/acme-crypto",
+      "sourceRoot": "projects/acme-crypto/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/acme-crypto/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/acme-crypto/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/acme-crypto/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/acme-crypto/src/test.ts",
+            "tsConfig": "projects/acme-crypto/tsconfig.spec.json",
+            "karmaConfig": "projects/acme-crypto/karma.conf.js"
+          }
+        }
+      }
     }
   },
   "defaultProject": "cryptoapp"

@@ -1,0 +1,64 @@
+/* rot13-white:          #FFFFFF;
+rot13-wood:           #E9C2A6;
+rot13-dkGray:         #333333;
+rot13-fontColor:      #333333; */
+@mixin box-sizing($type) {
+    -webkit-box-sizing: $type;
+    -moz-box-sizing:    $type;
+    -o-box-sizing:      $type;
+    box-sizing:         $type;
+}
+* {
+    margin: 0;
+    padding: 0;
+    @include box-sizing(border-box); 
+}
+html, 
+body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+    /* background-color: #E9C2A6; */
+}
+button {
+    /* display: block; */
+    margin: 0 auto;
+    width: 75%;
+    font-size: 1.25em;
+    padding: 0.5em;
+    background-color:  #333333;
+    border: none;
+    color:   #FFFFFF;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+h1,
+p,
+textarea {
+    margin: 0 auto;
+    padding: 1em;
+    color:  #333333;
+    font-family: 'Open Sans', sans-serif;
+}
+h1,
+p {
+    text-shadow: 1px 1px 0 #EAD8CA;
+}
+textarea {
+    width: 75%;
+    height: 8em;
+    padding: 1em;
+    margin: 1em auto;
+    font-size: 1em;
+    border: 1px solid  #333333;
+    background-color: #FFFFFF;
+}
+textarea[disabled] {
+    background-color: #E9C2A6;
+}
+.strong {
+    font-weight: bold;
+}

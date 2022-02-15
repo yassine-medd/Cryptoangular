@@ -1,78 +1,51 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'lib-acme-crypto-xor',
+  template: `  `,
+  styles: [ ]
 })
-export class AppComponent {
-  title = ' Crypto App';
-  decrypto='';
-  values = '';
-  character: string='';
-  dataBinaire : any[]=[];
-  dataString : string='';
-  public remplace(value : string){
+export class AcmeCryptoXor implements OnInit {
 
-  //  var a = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  //  var b = "nopqrstuvwxyzabcdefghijklmNOPQRSTUVWXYZABCDEFGHIJKLM";
-  //  this.decrypto = value.replace(/[a-z]/gi, (c) => b[a.indexOf(c)]);
-  //  // or 
-  //  // character = String.fromCharCode(value.charCodeAt(0) + (value.toUpperCase() + " " <= "N" ? 13 : -13));
-   
-  //  console.log(this.decrypto);
+  constructor() { }
+
+  ngOnInit(): void {
   }
-  isLetter(str: string){
-    
-    //console.log(str,"**islettre**");
-    let regExSpecial = /[a-zA-Z]/g;
-    //console.log(/[a-zA-Z]/g.test(str))
-    return regExSpecial.test(str);
-    
+  
+  public hello(){
+      console.log('yes je suis xor');
   }
-  EncryptorDecryptorROT13(){
-    this.character="";
-   
-    for (let i = 0; i < this.values.length; i++) {
-      if(this.isLetter(this.values[i]))
-        this.character += String.fromCharCode(this.values[i].charCodeAt(0) + (this.values[i].toUpperCase() + " " <= "N" ? 13 : -13));
-      else
-      this.character += this.values[i];
-    }
+
+//   DeCryptoXOR(valCrptoBinaire :any[], key: string): any[]{
+
+//      // valueCrypto un tableu qui contien la phrase crypté et Key c est la clé du crptage
+//     let valueDeCrypto : any[]=[];
+//     let keyBinarie :any[]=[];
+//     //let valCrptoBinaire: any[]=[];
+
+//     //valCrptoBinaire = this.ConvertStringToBinarie(valueCrypto);
     
-  }
-  CryptoZmap(){
-    this.character=this.values;
-    //console.log(this.character)
-    var a = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    var b = "defghilmnQRSTrstuvwxyzABCDEFGabcHIJKLMopqNOPUVjkWXYZ";
-    
-    this.character=this.character.replace(/[a-zA-Z]/g, (value) => b[a.indexOf(value)]);
-   // console.log(this.character,'**', this.values)
-   // or 
-   // character = String.fromCharCode(value.charCodeAt(0) + (value.toUpperCase() + " " <= "N" ? 13 : -13));
-   
-   console.log(this.decrypto);
-  }
-  DeCryptoZmap(){
-    this.character=this.values;
-    //console.log(this.character)
-    var b = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    var a = "defghilmnQRSTrstuvwxyzABCDEFGabcHIJKLMopqNOPUVjkWXYZ";
-    
-    this.character=this.character.replace(/[a-zA-Z]/g, (value) => b[a.indexOf(value)]);
-    console.log(this.character,'**', this.values)
-   // or 
-   // character = String.fromCharCode(value.charCodeAt(0) + (value.toUpperCase() + " " <= "N" ? 13 : -13));
-   
-   console.log(this.decrypto);
-  }
-  DeCryptoXOR(){
-    let valueCrypto :any[]=[]; // un tableu qui contien la la phrase crypté
+//     // pour que la taille du soit > a la taile la phrase a décrypté.
+//     keyBinarie=this.ConvertStringToBinarie(this.equlibreListe(valCrptoBinaire.length,key));
+
+//     for (let index = 0; index < valCrptoBinaire.length; index++) {
+      
+//       valueDeCrypto.push( this.FusionXOR(valCrptoBinaire[index],keyBinarie[index]));
+      
+//     }
+
+//    console.log("** valeur decrypté ** :",valueDeCrypto)
+
+//    console.log('** valeur en string **', this.ConvertBinarieToString(valueDeCrypto));
+//       return valueDeCrypto
+//   }
+ 
+DeCryptoXOR(valueCrypto:any[], key: string): any[]{
+    //let valueCrypto :any[]=[]; // un tableu qui contien la la phrase crypté
     let valueDeCrypto : any[]=[];
-    let key : string='yassine';
+    //let key : string='yassine';
     let keyBinarie :any[]=[];
-    valueCrypto = this.CryptoXOR();
+    //valueCrypto = this.CryptoXOR('yassine',key);
     // pour que la taille du soit > a la taile la phrase a décrypté.
     keyBinarie=this.ConvertStringToBinarie(this.equlibreListe(valueCrypto.length,key));
 
@@ -85,12 +58,16 @@ export class AppComponent {
    console.log("** valeur decrypté ** :",valueDeCrypto)
 
    console.log('** valeur en string **', this.ConvertBinarieToString(valueDeCrypto));
-      
+      return valueDeCrypto
   }
-  CryptoXOR(): any[]{
+
+  CryptoXOR(values : string,key: string): any[]{
+
     let keyvalCrpto: any[][]=[];// un tableu qui contien la la clé  en nbinaire et la phrasea en binaire à Crypté
     let valueCrypto :any[]=[]; // un tableu qui contien la la phrase crypté
-    keyvalCrpto = this.ConvertKeyAndString(this.values,'yassine');
+
+    // tableux qui contient la clé les la phrase en binaire
+    keyvalCrpto = this.ConvertKeyAndString(values,key);
     console.log(keyvalCrpto)
     
     for (let index = 0; index < keyvalCrpto[0].length; index++) {
@@ -98,9 +75,10 @@ export class AppComponent {
       valueCrypto.push(this.FusionXOR(keyvalCrpto[0][index],keyvalCrpto[1][index]));
       
     }
-    console.log(valueCrypto);
+   
     return valueCrypto;
   }
+
   FusionXOR(tab1 : any[], tab2 : any[]):string{
     let Resultat : string='';
      for (let index = 0; index < tab1.length; index++) {
@@ -170,11 +148,9 @@ export class AppComponent {
     for (let i = 0; i < dataString.length; i++) {
       Resultat += String.fromCharCode(parseInt(dataString[i],2));
   }
-  // console.log("text",String.fromCharCode(parseInt(this.dataBinaire[0],2)));
+   // console.log("text",String.fromCharCode(parseInt(this.dataBinaire[0],2)));
+   console.log("** vale crypté",Resultat)
     return Resultat;
   }
 
-  OnKey(event: any) { 
-    this.values = event.target.value ; 
-  }
 }
