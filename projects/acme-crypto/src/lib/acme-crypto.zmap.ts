@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
 
 @Component({
     selector:'acme-crypto-zmap',
@@ -6,24 +6,17 @@ import { Component, OnInit } from "@angular/core";
     styleUrls: []
 })
 
-export class AcmeCryptoZmap implements OnInit{
+export class AcmeCryptoZmap {
+    
     constructor() { }
-
-    ngOnInit(): void {
-        
-    }
  
-     
-    DeCryptoOrCryptoZmap( values: string,crypto:boolean): string{
+    public DeCryptoOrCryptoZmap( values: string,crypto:boolean): string{
         let Resultat=values;
-        //console.log(this.character)
+
         var a = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
         var b = "defghilmnQRSTrstuvwxyzABCDEFGabcHIJKLMopqNOPUVjkWXYZ";
         
         Resultat=values.replace(/[a-zA-Z]/g, (value) => crypto ? b[a.indexOf(value)] : a[b.indexOf(value)] );
-       // console.log(this.character,'**', this.values)
-       // or 
-       // character = String.fromCharCode(value.charCodeAt(0) + (value.toUpperCase() + " " <= "N" ? 13 : -13));
        
        return Resultat;
       }

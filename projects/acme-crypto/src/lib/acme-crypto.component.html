@@ -2,7 +2,7 @@
   
 
   <form #myForm="ngForm"  novalidate>
-   
+   <div class="divRadio">
     <div class="custom-control custom-radio">
       <input id="ROT13" type="radio" class="custom-control-input" [(ngModel)]="typeCrypto" value="ROT13" ng-model="TypeCrypto" name="TypeCrypto" ngModel>
       <label class="custom-control-label" for="ROT13">ROT13</label>
@@ -17,22 +17,19 @@
        <input id="XOR" type="radio" class="custom-control-input"  [(ngModel)]="typeCrypto"  value="XOR" ng-model="TypeCrypto" name="TypeCrypto" ngModel>
        <label class="custom-control-label" for="XOR">XOR</label>
     </div>
- 
+  </div>
  </form>
  
-  <div *ngIf="typeCrypto == 'XOR' ">
-    UTILISER LA CLÉ  <input placeholder="Enter key here..." (keyup)="OnKey($event)">
+  <div class="key" *ngIf="typeCrypto == 'XOR' ">
+    <input type="text" placeholder="Enter key here..." (keyup)="OnKey($event)">
   </div>
-   
-    <textarea id="userInput" (keyup)="OnValue($event)"   placeholder="Enter text here..."></textarea>
+  <div class="container">
+  <p class="key" width="100%">Enter the text you wish to <span class="strong">encrypt</span> or <span class="strong">decrypt</span>.</p>
+    <textarea id="userInput" (keyup)="OnValue($event)" placeholder="Enter text here..."></textarea>
     <textarea  disabled>{{valcrypto}}</textarea>
     
-   
-    
-    
-     
-      <button type="button" (click)="Crypto()">Convert </button>
-      <button type="button" (click)="DeCrypto()">Decypto </button>
-      
+      <button type="button" (click)="Crypto()">Crypter </button>
+      <button type="button" (click)="DeCrypto()">Décrypter </button>
+  </div>
 </div>
     

@@ -1,8 +1,5 @@
-/* rot13-white:          #FFFFFF;
-rot13-wood:           #E9C2A6;
-rot13-dkGray:         #333333;
-rot13-fontColor:      #333333; */
-@mixin box-sizing($type) {
+
+/* @mixin box-sizing($type) {
     -webkit-box-sizing: $type;
     -moz-box-sizing:    $type;
     -o-box-sizing:      $type;
@@ -12,7 +9,7 @@ rot13-fontColor:      #333333; */
     margin: 0;
     padding: 0;
     @include box-sizing(border-box); 
-}
+} */
 html, 
 body {
     height: 100%;

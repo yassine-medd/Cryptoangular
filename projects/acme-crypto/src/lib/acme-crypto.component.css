@@ -23,8 +23,8 @@ textarea[disabled] {
 }
 button {
     /* display: block; */
-    margin: 0 auto;
-    width: 75%;
+    margin: 4px;
+    width: 30%;
     font-size: 1.25em;
     padding: 0.5em;
     background-color:  #333333;
@@ -33,3 +33,31 @@ button {
     text-transform: uppercase;
     font-weight: bold;
 }
+
+.divRadio {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+    width: 33%;
+    margin-left: 33%;
+    float: left;
+  }
+.custom-radio{
+    width: 30%;
+    float: left;
+}
+input[type=text] {
+    width: 40%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  .container .key{
+      width: 100%;
+      float: left;
+      margin: 1px;
+  }
+  

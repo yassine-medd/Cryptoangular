@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { AcmeCryptoComponent } from './acme-crypto.component';
 import { AcmeCryptoRot13 } from './acme-crypto.rot13';
 import { AcmeCryptoXor } from './acme-crypto.xor';
+import { AcmeCryptoZmap } from './acme-crypto.zmap';
 
 
 
@@ -12,14 +13,16 @@ import { AcmeCryptoXor } from './acme-crypto.xor';
   declarations: [
     AcmeCryptoComponent,
     AcmeCryptoXor,
-    AcmeCryptoRot13
+    AcmeCryptoRot13,
+    AcmeCryptoZmap
   ],
   imports: [FormsModule,CommonModule
   ],
   exports: [
     AcmeCryptoComponent,
     AcmeCryptoXor,
-    AcmeCryptoRot13
+    AcmeCryptoRot13,
+    AcmeCryptoZmap
 
   ]
 })

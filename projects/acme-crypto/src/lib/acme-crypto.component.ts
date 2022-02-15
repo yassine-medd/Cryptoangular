@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {AcmeCryptoXor} from './acme-crypto.xor'
 import {AcmeCryptoRot13} from './acme-crypto.rot13'
 import {AcmeCryptoZmap} from './acme-crypto.zmap'
@@ -11,9 +11,8 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./acme-crypto.component.css']
  
 })
-export class AcmeCryptoComponent implements OnInit {
+export class AcmeCryptoComponent  {
 
-  constructor() { }
   values: string='Crypto';
   key: string='Crypto';
 
@@ -23,8 +22,6 @@ export class AcmeCryptoComponent implements OnInit {
   acmeCryptoZmap = new AcmeCryptoZmap();
   typeCrypto: string='';
 
-  ngOnInit(): void {
-  }
 
   OnKey(event: any) { 
      
@@ -63,12 +60,7 @@ export class AcmeCryptoComponent implements OnInit {
       let array = this.c.DeCryptoXOR(this.ConvertStringTotableBinare(this.values),this.key);
       console.log(" valeur decrypté",array)
       this.valcrypto= this.c.ConvertBinarieToString(array);
-      // if(this.values.length>0 && this.key.length>0)
-      //   for (let index = 0; index < array.length; index++) {
-      //     this.valcrypto  += array[index];
-          
-      //   }
-  
+     
       console.log('finale vale',this.valcrypto);
     }else{  
       if(this.typeCrypto == "ROT13")
@@ -78,7 +70,6 @@ export class AcmeCryptoComponent implements OnInit {
     }
 
   }
-
 
   ConvertStringTotableBinare(dataString : string): any[]{
     let Resultat: any[]=[];
@@ -91,15 +82,11 @@ export class AcmeCryptoComponent implements OnInit {
         str='';
         i=i+1;
       }
-        
-      
+             
         str += dataString[i];      
-      
-      
+            
      }
     
-    console.log('db**Rsultat entrée:***',dataString)
-    console.log('db**Rsultat sortie:***',Resultat);
     return Resultat;
 }
 }

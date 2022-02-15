@@ -1,53 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'lib-acme-crypto-xor',
   template: `  `,
   styles: [ ]
 })
-export class AcmeCryptoXor implements OnInit {
+export class AcmeCryptoXor  {
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
-  
-  public hello(){
-      console.log('yes je suis xor');
-  }
-
-//   DeCryptoXOR(valCrptoBinaire :any[], key: string): any[]{
-
-//      // valueCrypto un tableu qui contien la phrase crypté et Key c est la clé du crptage
-//     let valueDeCrypto : any[]=[];
-//     let keyBinarie :any[]=[];
-//     //let valCrptoBinaire: any[]=[];
-
-//     //valCrptoBinaire = this.ConvertStringToBinarie(valueCrypto);
-    
-//     // pour que la taille du soit > a la taile la phrase a décrypté.
-//     keyBinarie=this.ConvertStringToBinarie(this.equlibreListe(valCrptoBinaire.length,key));
-
-//     for (let index = 0; index < valCrptoBinaire.length; index++) {
-      
-//       valueDeCrypto.push( this.FusionXOR(valCrptoBinaire[index],keyBinarie[index]));
-      
-//     }
-
-//    console.log("** valeur decrypté ** :",valueDeCrypto)
-
-//    console.log('** valeur en string **', this.ConvertBinarieToString(valueDeCrypto));
-//       return valueDeCrypto
-//   }
  
 DeCryptoXOR(valueCrypto:any[], key: string): any[]{
-    //let valueCrypto :any[]=[]; // un tableu qui contien la la phrase crypté
+     // un tableau qui va contenir la phrase décryptée
     let valueDeCrypto : any[]=[];
-    //let key : string='yassine';
+    // un tableau qui contient la clé en binaire
     let keyBinarie :any[]=[];
-    //valueCrypto = this.CryptoXOR('yassine',key);
-    // pour que la taille du soit > a la taile la phrase a décrypté.
-    keyBinarie=this.ConvertStringToBinarie(this.equlibreListe(valueCrypto.length,key));
+    
+    // equilibreListe :pour que la taille de la clé soit supérieure a la taille la phrase à décrypter.
+    keyBinarie=this.ConvertStringToBinarie(this.equilibreListe(valueCrypto.length,key));
 
     for (let index = 0; index < valueCrypto.length; index++) {
       
@@ -55,18 +25,15 @@ DeCryptoXOR(valueCrypto:any[], key: string): any[]{
       
     }
 
-   console.log("** valeur decrypté ** :",valueDeCrypto)
-
-   console.log('** valeur en string **', this.ConvertBinarieToString(valueDeCrypto));
-      return valueDeCrypto
+     return valueDeCrypto
   }
 
   CryptoXOR(values : string,key: string): any[]{
 
-    let keyvalCrpto: any[][]=[];// un tableu qui contien la la clé  en nbinaire et la phrasea en binaire à Crypté
-    let valueCrypto :any[]=[]; // un tableu qui contien la la phrase crypté
+    let keyvalCrpto: any[][]=[];// un tableau qui contient la clé  en binaire et la phrase en binaire à Crypté
+    let valueCrypto :any[]=[]; // un tableau qui contient la phrase cryptée
 
-    // tableux qui contient la clé les la phrase en binaire
+    // Tableaux qui contiennent la clé et la phrase en binaire
     keyvalCrpto = this.ConvertKeyAndString(values,key);
     console.log(keyvalCrpto)
     
@@ -78,33 +45,32 @@ DeCryptoXOR(valueCrypto:any[], key: string): any[]{
    
     return valueCrypto;
   }
-
+// application de l'algorithme  XOR 
   FusionXOR(tab1 : any[], tab2 : any[]):string{
     let Resultat : string='';
      for (let index = 0; index < tab1.length; index++) {
       if(tab1[index]==tab2[index])
         Resultat += '0';
       else
-        Resultat += '1';
-       
+        Resultat += '1';     
      }
    return Resultat;
   }
-
-  equlibreListe(taille : number , tab : string ): string{
+  // equilibreListe :pour que la taille de la clé soit supérieure a la taille la phrase à décrypter.
+   
+  equilibreListe(taille : number , tab : string ): string{
     let Resultat : string ='';
      for (let index = 0; index < (taille/ tab.length); index++) {
        Resultat += tab;       
      }
-    
-     console.log("yes",Resultat);
      return Resultat
   }
+
   ConvertKeyAndString(data : string, key:string): any[][]{
     let keyBinarie: any[]=[];
     let dataBinaire : any[]=[];
 
-    key = this.equlibreListe(data.length, key);
+    key = this.equilibreListe(data.length, key);
 
     dataBinaire =this.ConvertStringToBinarie(data);
     keyBinarie =this.ConvertStringToBinarie(key);
@@ -113,9 +79,7 @@ DeCryptoXOR(valueCrypto:any[], key: string): any[]{
 
     valCrpto.push(dataBinaire);
     valCrpto.push(keyBinarie);
-    //console.log(keyBinarie);
-    
-
+   // Tableaux qui contiennent la clé et la phrase en binaire
     return valCrpto
 
     
@@ -129,27 +93,14 @@ DeCryptoXOR(valueCrypto:any[], key: string): any[]{
         asci = values.charCodeAt(i);
         dataBinaire.push(asci.toString(2));
     }
-
     return dataBinaire
-  // console.log("Le nombre décimal est " + decimal);
-  // var octal = decimal.toString(8);
-  // console.log("Le nombre octal est " + octal);
-  // var hexadecimal = decimal.toString(16);
-  // console.log("Le nombre hexadécimal est " + hexadecimal);
-  // var binary = asci.toString(2);
-  // console.log("Le nombre binaire est " + binary);
-  // console.log("Le tableu est " + this.dataBinaire);
-  
-  //console.log("te",String.fromCharCode(parseInt(data[0], 16)))
   }
 
   ConvertBinarieToString(dataString : any[]): string{
     let Resultat: string='';
     for (let i = 0; i < dataString.length; i++) {
       Resultat += String.fromCharCode(parseInt(dataString[i],2));
-  }
-   // console.log("text",String.fromCharCode(parseInt(this.dataBinaire[0],2)));
-   console.log("** vale crypté",Resultat)
+       }
     return Resultat;
   }
 

@@ -1,26 +1,21 @@
-import { Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
 @Component({
     selector: 'acme-crypto-rot13',
     template: `  `,
     styleUrls: []
 })
-export class AcmeCryptoRot13 implements OnInit {
+export class AcmeCryptoRot13  {
 
     constructor() { }
   
-    ngOnInit(): void {
-    }
-
-
     isLetter(str: string){
-    
-        //console.log(str,"**islettre**");
+
         let regExSpecial = /[a-zA-Z]/g;
-        //console.log(/[a-zA-Z]/g.test(str))
+ 
         return regExSpecial.test(str);
         
-      }
-      EncryptorDecryptorROT13(values:string): string{
+    }
+    EncryptorDecryptorROT13(values:string): string{
         let Resultat: string='';
        
         for (let i = 0; i < values.length; i++) {
@@ -30,6 +25,6 @@ export class AcmeCryptoRot13 implements OnInit {
           Resultat += values[i];
         }
         return Resultat;
-      }
+    }
   
 }
