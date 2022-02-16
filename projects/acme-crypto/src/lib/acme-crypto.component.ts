@@ -13,10 +13,10 @@ import { CommonModule } from '@angular/common';
 })
 export class AcmeCryptoComponent  {
 
-  values: string='Crypto';
-  key: string='Crypto';
+  values: any='Crypto';
+  key: any='Crypto';
 
-  valcrypto :string='';
+  valcrypto :any='';
   c = new AcmeCryptoXor();
   acmeCryptoRot13 = new AcmeCryptoRot13();
   acmeCryptoZmap = new AcmeCryptoZmap();
@@ -31,44 +31,66 @@ export class AcmeCryptoComponent  {
     
     this.values = event.target.value ;
   }
-  Crypto(){
-
-    if(this.typeCrypto == "XOR")
+  public crypt<T = any>(value: T | undefined,typeCrypto:string): string {
+    if(value != undefined)
      {
-      let array = this.c.CryptoXOR(this.values,this.key);
-      console.log('V2',array);
-      this.valcrypto='';
-      if(this.values.length>0 && this.key.length>0)
-        for (let index = 0; index < array.length; index++) {
-          this.valcrypto  += array[index] + " ";
-          
-        }
-     }else 
-     {  
-       if(this.typeCrypto == "ROT13")
-           this.valcrypto=this.acmeCryptoRot13.EncryptorDecryptorROT13(this.values);
-       else
-       this.valcrypto= this.acmeCryptoZmap.DeCryptoOrCryptoZmap(this.values, true);
+      this.typeCrypto=typeCrypto;
+      this.values=  value;
+      this.Crypto()
      }
+     else return ''
+
+    return  this.valcrypto
+  }
+  public decrypt<T = any>(typeCrypto:string,value?: string): T {
+     this.typeCrypto=typeCrypto;
+      this.values=  value;
+      this.DeCrypto();
+      return this.valcrypto;
+  }
+  Crypto(){
+  
+      if(this.values.length>0)
+        switch (this.typeCrypto) {
+          case 'XOR':
+            let array = this.c.CryptoXOR(this.values,this.key);
+            this.valcrypto='';
+            if(this.values.length>0 && this.key.length>0)
+              for (let index = 0; index < array.length; index++) {
+                this.valcrypto  += array[index] + " ";        
+              }
+            break;
+          case 'ROT13':
+            this.valcrypto=this.acmeCryptoRot13.EncryptorDecryptorROT13(this.values);
+            break;
+          case 'Zmap': 
+            this.valcrypto= this.acmeCryptoZmap.DeCryptoOrCryptoZmap(this.values, true);
+            break;
+          default:
+            console.log(`Sorry check type crypto!!`,this.typeCrypto);
+            }
 
   }
 
   DeCrypto(){
-   
-    if(this.typeCrypto == 'XOR')
-    {
-      let array = this.c.DeCryptoXOR(this.ConvertStringTotableBinare(this.values),this.key);
-      console.log(" valeur decrypté",array)
-      this.valcrypto= this.c.ConvertBinarieToString(array);
-     
-      console.log('finale vale',this.valcrypto);
-    }else{  
-      if(this.typeCrypto == "ROT13")
-          this.valcrypto=this.acmeCryptoRot13.EncryptorDecryptorROT13(this.values);
-      else
-         this.valcrypto= this.acmeCryptoZmap.DeCryptoOrCryptoZmap(this.values, false);
-    }
 
+    if(this.values.length>0)
+        switch (this.typeCrypto) {
+          case 'XOR':
+            let array = this.c.DeCryptoXOR(this.ConvertStringTotableBinare(this.values),this.key);
+            this.valcrypto= this.c.ConvertBinarieToString(array);
+            break;
+          case 'ROT13':
+            this.valcrypto=this.acmeCryptoRot13.EncryptorDecryptorROT13(this.values);
+            break;
+          case 'Zmap': 
+          this.valcrypto= this.acmeCryptoZmap.DeCryptoOrCryptoZmap(this.values, false);
+            break;
+          default:
+            console.log(`Sorry check type crypto!!`);
+            }
+   
+   
   }
 
   ConvertStringTotableBinare(dataString : string): any[]{

@@ -5,6 +5,8 @@ import { Component } from '@angular/core';
   template: `  `,
   styles: [ ]
 })
+
+
 export class AcmeCryptoXor  {
 
   constructor() { }
